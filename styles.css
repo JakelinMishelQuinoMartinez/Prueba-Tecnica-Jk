@@ -1,0 +1,243 @@
+:root{
+    --fondo-claro: #f4f6f8;
+    --color-blanco: #ffffff;
+    --color-texto: #333;
+    --color-primario: #2563eb;
+    --gris-borde: #d1d5db;
+    --gris-claro: #e5e7eb;
+    --gris-encabezado: #eef2f7;
+    --gris-hover: #f8fafc;
+    --sombra-suave: rgba(0,0,0,.08);
+    --sombra-modal: rgba(0,0,0,.2);
+    --overlay-modal: rgba(0,0,0,.45);
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial, Helvetica, sans-serif;
+    background:var(--fondo-claro);
+    color:var(--color-texto);
+    padding:30px;
+}
+
+.container{
+    max-width:1200px;
+    margin:auto;
+}
+
+.top-panel{
+    background:var(--color-blanco);
+    padding:25px;
+    border-radius:10px;
+    margin-bottom:25px;
+    box-shadow:0 2px 10px var(--sombra-suave);
+}
+
+.top-panel h1{
+    margin-bottom:20px;
+}
+
+.controls{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    gap:20px;
+    flex-wrap:wrap;
+}
+
+#btnNuevoTicket{
+    border:none;
+    background:var(--color-primario);
+    color:var(--color-blanco);
+    padding:12px 20px;
+    border-radius:6px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+#btnNuevoTicket:hover{
+    opacity:.9;
+}
+
+.filters{
+    display:flex;
+    gap:20px;
+    flex-wrap:wrap;
+}
+
+.filter-group{
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+}
+
+select{
+    padding:10px;
+    border:1px solid var(--gris-borde);
+    border-radius:6px;
+    min-width:170px;
+}
+
+.table-section{
+    background:var(--color-blanco);
+    padding:25px;
+    border-radius:10px;
+    box-shadow:0 2px 10px var(--sombra-suave);
+}
+
+.table-section h2{
+    margin-bottom:20px;
+}
+
+.table-container{
+    overflow-x:auto;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+thead{
+    background:var(--gris-encabezado);
+}
+
+th,
+td{
+    padding:12px;
+    text-align:left;
+    border-bottom:1px solid var(--gris-claro);
+}
+
+tbody tr:hover{
+    background:var(--gris-hover);
+}
+
+.modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:var(--overlay-modal);
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+    z-index:1000;
+}
+
+.modal-content{
+    width:100%;
+    max-width:600px;
+    background:var(--color-blanco);
+    border-radius:10px;
+    padding:25px;
+    box-shadow:0 10px 30px var(--sombra-modal);
+}
+
+.modal-header{
+    margin-bottom:20px;
+}
+
+.modal-header h2{
+    margin:0;
+}
+
+#ticketForm{
+    display:flex;
+    flex-direction:column;
+    gap:16px;
+}
+
+.form-group{
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+}
+
+.form-group label{
+    font-weight:600;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea{
+    width:100%;
+    padding:10px 12px;
+    border:1px solid var(--gris-borde);
+    border-radius:6px;
+    font-size:14px;
+}
+
+.form-group textarea{
+    resize:vertical;
+}
+
+.modal-actions{
+    display:flex;
+    justify-content:flex-end;
+    gap:10px;
+    margin-top:10px;
+}
+
+.btn-primary{
+    border:none;
+    background:var(--color-primario);
+    color:var(--color-blanco);
+    padding:10px 18px;
+    border-radius:6px;
+    cursor:pointer;
+}
+
+.btn-secondary{
+    border:none;
+    background:var(--gris-claro);
+    padding:10px 18px;
+    border-radius:6px;
+    cursor:pointer;
+}
+
+.btn-primary:hover,
+.btn-secondary:hover{
+    opacity:.9;
+}
+
+@media (max-width:768px){
+
+    body{
+        padding:15px;
+    }
+
+    .controls{
+        flex-direction:column;
+        align-items:stretch;
+    }
+
+    .filters{
+        flex-direction:column;
+    }
+
+    select{
+        width:100%;
+    }
+
+    #btnNuevoTicket{
+        width:100%;
+    }
+
+    .modal-content{
+        max-width:100%;
+    }
+
+    .modal-actions{
+        flex-direction:column;
+    }
+
+    .btn-primary,
+    .btn-secondary{
+        width:100%;
+    }
+}
