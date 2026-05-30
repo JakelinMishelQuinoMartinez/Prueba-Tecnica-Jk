@@ -163,3 +163,32 @@ function renderizarTickets(lista) {
         ticketsBody.appendChild(fila);
     });
 }
+
+const filtroEstado = document.getElementById("filtroEstado");
+const filtroPrioridad = document.getElementById("filtroPrioridad");
+
+function filtrarTickets() {
+
+    const estadoSeleccionado = filtroEstado.value;
+    const prioridadSeleccionada = filtroPrioridad.value;
+
+    const listaFiltrada = tickets.filter(ticket => {
+
+        const coincideEstado =
+            estadoSeleccionado === "todos" ||
+            ticket.estado === estadoSeleccionado;
+
+        const coincidePrioridad =
+            prioridadSeleccionada === "todas" ||
+            ticket.prioridad === prioridadSeleccionada;
+
+        return coincideEstado && coincidePrioridad;
+
+    });
+
+    renderizarTickets(listaFiltrada);
+
+}
+
+filtroEstado.addEventListener("change", filtrarTickets);
+filtroPrioridad.addEventListener("change", filtrarTickets);
