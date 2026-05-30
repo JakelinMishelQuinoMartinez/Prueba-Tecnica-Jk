@@ -120,11 +120,46 @@ function renderizarTickets(lista) {
             <td>${ticket.estado}</td>
             <td>${ticket.fechaCreacion}</td>
             <td>
-                <!-- Botones de acción
-                     (Actualizar / Eliminar)
-                     se implementarán después -->
+                <button class="btn-cambiar-estado">
+                    Cambiar Estado
+                </button>
+                <button class="btn-eliminar">
+                    Eliminar
+                </button>
             </td>
         `;
+        const btnCambiarEstado =
+            fila.querySelector(".btn-cambiar-estado");
+        btnCambiarEstado.addEventListener("click", () => {
+            if (ticket.estado === "pendiente") {
+                ticket.estado = "en proceso";
+            } else if (ticket.estado === "en proceso") {
+                ticket.estado = "resuelto";
+            } else {
+                ticket.estado = "pendiente";
+            }
+            localStorage.setItem(
+                "tickets",
+                JSON.stringify(tickets)
+            );
+            renderizarTickets(tickets);
+        });
+        const btnEliminar =
+            fila.querySelector(".btn-eliminar");
+        btnEliminar.addEventListener("click", () => {
+            const confirmar = confirm(
+                "¿Está seguro de que desea eliminar este ticket?"
+            );
+            if (!confirmar) return;
+            tickets = tickets.filter(
+                item => item.id !== ticket.id
+            );
+            localStorage.setItem(
+                "tickets",
+                JSON.stringify(tickets)
+            );
+            renderizarTickets(tickets);
+        });
         ticketsBody.appendChild(fila);
     });
 }
