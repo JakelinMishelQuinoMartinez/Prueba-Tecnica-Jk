@@ -13,6 +13,53 @@ btnCancelar.addEventListener("click", () => {
     modalTicket.style.display = "none";
 });
 
+const ticketForm = document.getElementById("ticketForm");
+
+ticketForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const nombre = document.getElementById("nombre").value.trim();
+    const departamento = document.getElementById("departamento").value;
+    const tipoProblema = document.getElementById("tipoProblema").value;
+    const descripcion = document.getElementById("descripcion").value.trim();
+    const prioridad = document.getElementById("prioridad").value;
+    if (
+        !nombre ||
+        !departamento ||
+        !tipoProblema ||
+        !descripcion ||
+        !prioridad
+    ) {
+        alert("Todos los campos son obligatorios.");
+        return;
+    }
+    if (nombre.length < 3) {
+        alert("El nombre debe contener al menos 3 caracteres.");
+        return;
+    }
+    if (descripcion.length < 10) {
+        alert("La descripción debe contener al menos 10 caracteres.");
+        return;
+    }
+    const nuevoTicket = {
+        id: Date.now(),
+        nombre: nombre,
+        departamento: departamento,
+        tipoProblema: tipoProblema,
+        descripcion: descripcion,
+        prioridad: prioridad,
+        estado: "pendiente",
+        fechaCreacion: new Date().toISOString().split("T")[0]
+    };
+    tickets.push(nuevoTicket);
+    localStorage.setItem(
+        "tickets",
+        JSON.stringify(tickets)
+    );
+    ticketForm.reset();
+    modalTicket.style.display = "none";
+    renderizarTickets(tickets);
+});
+
 document.addEventListener("DOMContentLoaded", () => {
 
     const ticketsGuardados = localStorage.getItem("tickets");
